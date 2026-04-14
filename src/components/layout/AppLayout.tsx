@@ -21,6 +21,7 @@ import {
   Building2,
   Menu,
   X,
+  Shield,
 } from 'lucide-react'
 
 interface NavItem {
@@ -41,6 +42,7 @@ const navItems: NavItem[] = [
 
 const bottomNavItems: NavItem[] = [
   { label: '설정', href: '/settings', icon: <Settings size={18} /> },
+  { label: '관리자 콘솔', href: '/admin', icon: <Shield size={18} /> },
 ]
 
 interface AppLayoutProps {
