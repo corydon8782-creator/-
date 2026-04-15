@@ -3,6 +3,10 @@
 out/
 build/
 
+# Cloudflare
+.vercel/
+.wrangler/
+
 # Dependencies
 node_modules/
 .npm

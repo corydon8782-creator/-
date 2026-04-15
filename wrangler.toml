@@ -1,0 +1,12 @@
+name = "construction-quality-ai-platform"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# 로컬 개발용 (wrangler pages dev)
+[dev]
+port = 3000
+
+# 환경변수 (실제 배포 시 Cloudflare Pages 대시보드에서 설정)
+# [vars]
+# NEXT_PUBLIC_API_URL = "https://api.qualityai.co.kr"

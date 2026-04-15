@@ -1,0 +1,49 @@
+name: Cloudflare Pages 배포
+
+on:
+  push:
+    branches:
+      - main          # main 브랜치 push 시 프로덕션 배포
+  pull_request:
+    branches:
+      - main          # PR 시 미리보기 배포
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Next.js → Cloudflare Pages 배포
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write  # PR 미리보기 URL 댓글용
+
+    steps:
+      - name: 소스 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 의존성 설치
+        run: npm ci --legacy-peer-deps
+
+      - name: Cloudflare Pages 빌드
+        run: npx @cloudflare/next-on-pages
+        env:
+          # 빌드 시점 환경변수 (필요시 GitHub Secrets에 추가)
+          # NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NODE_ENV: production
+
+      - name: Cloudflare Pages 배포
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: construction-quality-ai-platform
+          directory: .vercel/output/static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # main 브랜치는 production, 나머지는 preview
+          branch: ${{ github.ref == 'refs/heads/main' && 'main' || github.head_ref }}
