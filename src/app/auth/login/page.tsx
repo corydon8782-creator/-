@@ -9,8 +9,8 @@ import Input from '@/components/ui/Input'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('hyunjun.kim@hanjin-const.co.kr')
-  const [password, setPassword] = useState('1234')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [showPw, setShowPw] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -168,6 +168,17 @@ export default function LoginPage() {
               이메일: hyunjun.kim@hanjin-const.co.kr<br />
               비밀번호: 1234
             </p>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('hyunjun.kim@hanjin-const.co.kr')
+                setPassword('1234')
+                setError('')
+              }}
+              className="mt-2 w-full text-xs font-medium text-blue-700 bg-white border border-blue-300 rounded px-3 py-1.5 hover:bg-blue-100 transition-colors"
+            >
+              데모 계정으로 자동 입력
+            </button>
           </div>
 
           <p className="mt-6 text-xs text-center text-slate-400">
