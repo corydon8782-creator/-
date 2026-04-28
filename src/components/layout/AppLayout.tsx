@@ -22,6 +22,7 @@ import {
   Menu,
   X,
   Shield,
+  PackageSearch,
 } from 'lucide-react'
 
 interface NavItem {
@@ -38,6 +39,7 @@ const navItems: NavItem[] = [
   { label: '계획서 편집', href: '/editor', icon: <FileText size={18} /> },
   { label: '템플릿 관리', href: '/templates', icon: <BookTemplate size={18} /> },
   { label: '출력 / 다운로드', href: '/export', icon: <Download size={18} /> },
+  { label: '주요자재 수불부', href: '/materials', icon: <PackageSearch size={18} /> },
 ]
 
 const bottomNavItems: NavItem[] = [
